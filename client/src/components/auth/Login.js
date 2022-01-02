@@ -1,4 +1,4 @@
-import React, { Component } from 'react'; 
+import React, { Component } from 'react'
 import axios from 'axios'
 
 export default class Login extends Component {
@@ -43,27 +43,41 @@ export default class Login extends Component {
     }
 
     render() {
+        
+        const loginField = {
+            maxWidth : "500px"
+        };
+
         return (
             <div> 
-                <form onSubmit={e => this.handleSubmit(e)}> 
-                    <input 
-                        type="email"
-                        name="email" 
-                        placeholder="email" 
-                        value={this.state.email}
-                        onChange={e => this.handleChange(e)} 
-                        required
-                    /> 
-                    <input 
-                        type="password"
-                        name="password" 
-                        placeholder="password" 
-                        value={this.state.password}
-                        onChange={e => this.handleChange(e)} 
-                        required
-                    /> 
-                    <button type="submit"> Login </button> 
-                </form>
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"></link>
+                <main>
+                    <form onSubmit={e => this.handleSubmit(e)}> 
+                        <label for="loginEmail"> Email Address </label> 
+                        <input 
+                            id="loginEmail"
+                            style={ loginField }
+                            type="email"
+                            name="email" 
+                            placeholder="email" 
+                            value={this.state.email}
+                            onChange={e => this.handleChange(e)} 
+                            required
+                        /> 
+                        <label for="loginPassword"> Password </label> 
+                        <input 
+                            id="loginPassword"
+                            style={ loginField }
+                            type="password"
+                            name="password" 
+                            placeholder="password" 
+                            value={this.state.password}
+                            onChange={e => this.handleChange(e)} 
+                            required
+                        /> 
+                        <button type="submit"> Login </button> 
+                    </form>
+                </main>
             </div>
         )
     }

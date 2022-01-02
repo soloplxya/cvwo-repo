@@ -48,33 +48,36 @@ export default class Registration extends Component {
     render() {
         return (
             <div> 
-                <form onSubmit={e => this.handleSubmit(e)}> 
-                    <input 
-                        type="email"
-                        name="email" 
-                        placeholder="email" 
-                        value={this.state.email}
-                        onChange={e => this.handleChange(e)} 
-                        required
-                    /> 
-                    <input 
-                        type="password"
-                        name="password" 
-                        placeholder="password" 
-                        value={this.state.password}
-                        onChange={e => this.handleChange(e)} 
-                        required
-                    /> 
-                    <input 
-                        type="password"
-                        name="password_confirmation" 
-                        placeholder="password confirmation" 
-                        value={this.state.password_confirmation}
-                        onChange={e => this.handleChange(e)} 
-                        required
-                    /> 
-                    <button type="submit"> Register </button> 
-                </form>
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"></link>
+                <main>
+                    <form onSubmit={e => this.handleSubmit(e)}> 
+                        <input 
+                            type="email"
+                            name="email" 
+                            placeholder="email" 
+                            value={this.state.email}
+                            onChange={e => this.handleChange(e)} 
+                            required
+                        /> 
+                        <input 
+                            type="password"
+                            name="password" 
+                            placeholder="password" 
+                            value={this.state.password}
+                            onChange={e => this.handleChange(e)} 
+                            required
+                        /> 
+                        <input 
+                            type="password"
+                            name="password_confirmation" 
+                            placeholder="password confirmation" 
+                            value={this.state.password_confirmation}
+                            onChange={e => this.handleChange(e)} 
+                            required
+                        /> 
+                        <button type="submit"> Register </button> 
+                    </form>
+                </main> 
             </div>
         )
     }

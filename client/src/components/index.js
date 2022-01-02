@@ -20,8 +20,7 @@ class Index extends Component {
     render() {
         return (
             <div> 
-                <h1> Home </h1>
-                <h2> Status: {this.props.loggedInStatus} </h2>
+                <h1> Register </h1>
                 <Registration handleSuccessfulAuth={this.handleSuccessfulAuth}/>
                 <Link to='/LoginPage' > Registered user? Click here to login. </Link> 
             </div>

@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { Fragment } from "react";
+import "../App.css";
+import ListTodos from "./todos/ListTodos";
 
 const Dashboard = props => {
     return (
-        <main>
-            <h1> Dashboard </h1>
-            <h2> Status: {props.loggedInStatus }</h2>
-        </main>
+        <Fragment>
+            <div className="container">
+                <ListTodos />
+            </div>
+      </Fragment>
     )
 }
 
 export default Dashboard; 
+
