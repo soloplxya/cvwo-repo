@@ -3,10 +3,11 @@ import "../App.css";
 import ListTodos from "./todos/ListTodos";
 
 const Dashboard = props => {
+    console.log(props.user)
     return (
         <Fragment>
             <div className="container">
-                <ListTodos />
+                <ListTodos {...props}/>
             </div>
       </Fragment>
     )

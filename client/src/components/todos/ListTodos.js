@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import Todo from "./Todo"
 import InputTodo from "./InputTodo";
 
-const ListTodos = () => {
+const ListTodos = props => {
   const [todos, setTodos] = useState([]);
 
 
@@ -27,7 +27,7 @@ const ListTodos = () => {
 
   return (
     <Fragment>
-      <InputTodo />
+      <InputTodo {...props} />
         {todos.map((x,i) => {
           return <Todo key={i} todo={x} setTodos={setTodos} todos={todos}></Todo>
         })}

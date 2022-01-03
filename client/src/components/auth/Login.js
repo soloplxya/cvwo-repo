@@ -51,7 +51,7 @@ export default class Login extends Component {
         return (
             <div> 
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"></link>
-                <main>
+                <main style={{display: "flex", justifyContent: "center"}}>
                     <form onSubmit={e => this.handleSubmit(e)}> 
                         <label for="loginEmail"> Email Address </label> 
                         <input 

@@ -35,6 +35,7 @@ export default class App extends React.Component {
     .get("http://localhost:3001/logged_in", { withCredentials: true })
     .then(response => {
       if (response.data.logged_in && this.state.loggedInStatus === "NOT_LOGGED_IN") {
+
         this.setState({
           loggedInStatus: "LOGGED_IN", 
           user: response.data.user
@@ -66,7 +67,7 @@ export default class App extends React.Component {
             <Route 
               exact 
               path={'/Dashboard'} 
-              element={ <Dashboard {...this.props} loggedInStatus={this.state.loggedInStatus}/> }/>
+              element={ <Dashboard {...this.props} loggedInStatus={this.state.loggedInStatus} user={this.state.user}/> }/>
             <Route 
               exact 
               path={'/LoginPage'} 
