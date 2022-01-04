@@ -21,7 +21,7 @@ const Todo = ({todo, setTodos, todos}) => {
     return (
         <Fragment>
         <div className="todo-row"> 
-          <div key={todo.todo_id}>
+          <div key={todo.id}>
             {todo.description}
           </div>
             <div className='icons'>

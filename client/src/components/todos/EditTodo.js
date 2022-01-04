@@ -12,7 +12,7 @@ const EditTodo = ({ todo }) => {
     try {
       const body = { description };
       const response = await fetch(
-        `/todoes/${todo.todo_id}`,
+        `/todoes/${todo.id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -24,15 +24,16 @@ const EditTodo = ({ todo }) => {
     } catch (err) {
       console.error(err.message);
     }
-    */ 
+    */
   };
 
   return (
     <Fragment>
       <TiEdit
+        type="button"
         className="edit-icon"
         data-toggle="modal"
-        data-target={`#id${todo.todo_id}`}
+        data-target={`#id${todo.id}`}
         label="Edit"
       >
         Edit
@@ -40,7 +41,7 @@ const EditTodo = ({ todo }) => {
       
       <div
         class="modal"
-        id={`id${todo.todo_id}`}
+        id={`id${todo.id}`}
         onClick={() => setDescription(todo.description)}
       >
         <div class="modal-dialog">

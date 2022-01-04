@@ -21,11 +21,16 @@ class Index extends Component {
 
     render() {
         return (
-            <div> 
-                <h1> Register </h1>
-                <Registration handleSuccessfulAuth={this.handleSuccessfulAuth}/>
-                <Link to='/LoginPage' > Registered user? Click here to login. </Link> 
-            </div>
+         <div>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"></link>
+            <main> 
+                <div> 
+                    <h1> Register </h1>
+                    <Registration handleSuccessfulAuth={this.handleSuccessfulAuth}/>
+                    <Link to='/LoginPage' style={{display: "flex", justifyContent: "center"}}> Registered user? Click here to login. </Link> 
+                </div>
+            </main>
+        </div>
         )
     }
 }

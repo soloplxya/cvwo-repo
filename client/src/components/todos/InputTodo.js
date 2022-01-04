@@ -33,7 +33,9 @@ const onSubmitForm = event => {
     }
   }).catch(error => {
     console.log("task creation error", error)
-  })
+  }).finally(
+     window.location("/dashboard")
+  )
 
   event.preventDefault()
 

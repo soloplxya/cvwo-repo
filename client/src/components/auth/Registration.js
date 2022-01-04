@@ -1,4 +1,5 @@
 import React, { Component } from 'react'; 
+import  { Link } from 'react-router-dom'
 import axios from 'axios'
 
 export default class Registration extends Component {
@@ -48,7 +49,7 @@ export default class Registration extends Component {
         return (
             <div> 
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"></link>
-                <main>
+                <main style={{display: "flex", justifyContent: "center"}}>
                     <form onSubmit={e => this.handleSubmit(e)}> 
                         <input 
                             type="email"
