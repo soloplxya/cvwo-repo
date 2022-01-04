@@ -1,23 +1,21 @@
 import { Fragment, useState } from "react";
 import { RiCloseCircleLine } from 'react-icons/ri';
 import EditTodo from "./EditTodo";
+import axios from 'axios'
 
 
 const Todo = ({todo, setTodos, todos}) => {
     const [description, setDescription] = useState(todo.description);
 
-    const deleteTodo = async id => {
-      /* 
-      try {
-        const deleteTodo = await fetch(`/todoes/${id}`, {
-            method: "DELETE"
-        });
-      } catch (err) {
-          console.error(err.message);
-      } finally {
-          setTodos(todos.filter(todo => todo.todo_id !== id));
-      }
-      */ 
+    const deleteTodo = (id) => {
+      console.log(id)
+      axios
+      .delete(`http://localhost:3001/tasks/${id}`, { withCredentials: true })
+      .then(response => {
+        console.log(response.status)
+      })
+      .catch(error => console.log(error))
+      .finally( setTodos(todos.filter(todo => todo.id !== id))); 
     }; 
 
     return (
@@ -29,7 +27,7 @@ const Todo = ({todo, setTodos, todos}) => {
             <div className='icons'>
                 <EditTodo todo={todo}/> 
                 <RiCloseCircleLine
-                    onClick={() => deleteTodo(todo.todo_id)}
+                    onClick={() => deleteTodo(todo.id)}
                     className='delete-icon'
                 />
               

@@ -36,8 +36,8 @@ include CurrentUserConcern
     end 
   
     def destroy
-      @task.destroy
-      render json: @task
+      task = Task.find(params[:id])
+      task.destroy
     end 
 
 
