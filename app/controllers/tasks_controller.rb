@@ -1,15 +1,18 @@
 class TasksController < ApplicationController
-
-    
-    before_action :set_todo, only: [:show, :update, :destroy]
-    before_action :require_user
+include CurrentUserConcern 
 
     def index 
-      render json: @task
+      tasks = current_user.tasks
+      @tasks = tasks
+      render json: {
+        tasks: @tasks, 
+        http_response: "200"
+      }
     end 
 
     def create 
-      @task = Task.new(task_params)
+      user_now = current_user
+      @task = user_now.tasks.new(params.require(:task).permit(:description, :user_id, :status, :completed))
       if @task.save{
         render json: {
           task: @task, 
@@ -39,6 +42,8 @@ class TasksController < ApplicationController
 
 
 
+
+
     private 
       def set_todo
         @todo = Todo.find(params[:id])
@@ -47,7 +52,6 @@ class TasksController < ApplicationController
       def todo_params 
         params.require(:todo).permit(:id, :description, :status, :completed)
       end 
-
 
   end 
   

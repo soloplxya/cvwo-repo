@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    has_many :todos
+    has_many :tasks
     before_save { self.email = email.downcase }
     has_secure_password
 

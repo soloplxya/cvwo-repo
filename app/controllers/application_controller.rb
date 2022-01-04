@@ -1,8 +1,9 @@
+class AuthenticationError < StandardError; end
 class ApplicationController < ActionController::Base
 include CurrentUserConcern
     skip_before_action :verify_authenticity_token 
 
-    helper_method :logged_in?, :current_user, :authorized_user?, 
+    helper_method :logged_in?, :current_user, :authorized_user?
 
     def logged_in
         if @current_user
@@ -24,7 +25,7 @@ include CurrentUserConcern
     def authorized_user?
         @user == current_user
     end
-    
+
     def require_user
         if !logged_in
             render json: {
@@ -32,6 +33,13 @@ include CurrentUserConcern
             status: "not_logged_in"
             }
         end
+    end
+
+    def authenticate_user!
+        puts current_user
+        if current_user === nil
+            raise AuthenticationError
+        end 
     end
 
 end

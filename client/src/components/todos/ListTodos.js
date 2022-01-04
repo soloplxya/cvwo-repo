@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
+import axios from "axios";
 import Todo from "./Todo"
 import InputTodo from "./InputTodo";
 
@@ -6,20 +7,21 @@ const ListTodos = props => {
   const [todos, setTodos] = useState([]);
 
 
-  const getTodos = async () => {
-    // change to use axios 
-    /*
-    try {
-      const response = await fetch("/todoes");
-      const jsonData = await response.json();
-
-      setTodos(jsonData);
-    } catch (err) {
-      console.error(err.message);
-    }
-    */ 
+  const getTodos = () => {
+    const url = "http://localhost:3001/tasks"; 
+    axios.get(
+      url, 
+      { withCredentials: true }
+      ).then(response => {
+      console.log(response.data)
+      setTodos(response.data.tasks)
+      // this.props.handleSuccessfulAuth(response.data);
+    }).catch(error => {
+      console.log("task retrieving error", error)
+    })
   };
 
+  // similar to component did mount 
   useEffect(() => {
     getTodos();
   }, []);

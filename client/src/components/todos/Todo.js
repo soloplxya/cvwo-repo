@@ -4,8 +4,6 @@ import EditTodo from "./EditTodo";
 
 
 const Todo = ({todo, setTodos, todos}) => {
-    console.log(todos)
-  
     const [description, setDescription] = useState(todo.description);
 
     const deleteTodo = async id => {

@@ -10,38 +10,37 @@ const InputTodo = props => {
     description: "",
     user_id: "",
     status: "", 
-    complete: "", 
+    completed: "", 
  });
 
   // using a scaffolder
-    const onSubmitForm = event => {
-    console.log('onsubmitfunction')
-    const url = "http://localhost:3001/tasks"; 
-    axios.post(
-      url, 
-      { task: {
-         description: allValues.description, 
-         user_id: allValues.user_id, 
-         status: allValues.status, 
-         complete: allValues.complete,
-      }}, 
-      { withCredentials: true }
-    ).then(response => {
-      if (response.data.status === "created") {
-          console.log('task created')
-          // this.props.handleSuccessfulAuth(response.data);
-      }
-    }).catch(error => {
-      console.log("task creation error", error)
-    })
+const onSubmitForm = event => {
+  console.log('onsubmitfunction')
+  const url = "http://localhost:3001/tasks"; 
+  axios.post(
+    url, 
+    { task: {
+        description: allValues.description, 
+        user_id: allValues.user_id, 
+        status: allValues.status, 
+        complete: allValues.complete,
+    }}, 
+    { withCredentials: true }
+  ).then(response => {
+    if (response.data.status === "created") {
+        console.log('task created')
+        // this.props.handleSuccessfulAuth(response.data);
+    }
+  }).catch(error => {
+    console.log("task creation error", error)
+  })
 
-    event.preventDefault()
+  event.preventDefault()
 
-  };
+};
 
   // something like component did mount 
   useEffect(() => {
-    console.log({...props})
     setAllValues({...allValues, ['user_id']: props.user.id})
   }, [navigation, props.loggedInStatus, props.user])
 
