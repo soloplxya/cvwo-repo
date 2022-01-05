@@ -1,93 +1,74 @@
 
 import { TiEdit } from 'react-icons/ti';
 import React, { Fragment, useState } from "react";
+import Modal from "react-modal"
+import axios from "axios"
 
 const EditTodo = ({ todo }) => {
   const [description, setDescription] = useState(todo.description);
+  const [isOpen, setIsOpen] = useState(false);
 
+  function toggleModal() {
+    //setDescription(description)
+    setIsOpen(!isOpen);
+  }
 
-  const updateDescription = async e => {
-    /*
-    e.preventDefault();
+  function handleSubmit() {
+    //updateDescription(description)
     try {
-      const body = { description };
-      const response = await fetch(
-        `/todoes/${todo.id}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body)
-        }
-      );
-
-      window.location = "/";
-    } catch (err) {
-      console.error(err.message);
+      updateTodo(todo.id)
+      setIsOpen(!isOpen)
+    } catch (error) {
+      console.log(error)
     }
-    */
-  };
+    
+  }
+
+  const updateTodo = (id) => {
+    const body = { description }
+    axios
+    .put(`http://localhost:3001/tasks/${id}`, JSON.stringify(body), { withCredentials: true })
+    .then(response => {
+      console.log(response.status)
+    })
+    .catch(error => console.log(error))
+    .finally(
+      window.location = '/Dashboard'
+    ); 
+  }; 
 
   return (
     <Fragment>
       <TiEdit
         type="button"
         className="edit-icon"
-        data-toggle="modal"
-        data-target={`#id${todo.id}`}
+        onClick={toggleModal}
         label="Edit"
       >
         Edit
       </TiEdit>
-      
-      <div
-        class="modal"
-        id={`id${todo.id}`}
-        onClick={() => setDescription(todo.description)}
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Edit Todo</h4>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                onClick={() => setDescription(todo.description)}
-              >
-                &times;
-              </button>
-            </div>
-
-            <div class="modal-body">
-              <input
-                type="text"
-                className="form-control"
-                value={description}
-                onChange={e => setDescription(e.target.value)}
-              />
-            </div>
-
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-warning"
-                data-dismiss="modal"
-                onClick={e => updateDescription(e)}
-              >
-                Edit
-              </button>
-              <button
-                type="button"
-                class="btn btn-danger"
-                data-dismiss="modal"
-                onClick={() => setDescription(todo.description)}
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Modal 
+        isOpen={isOpen}
+        onRequestClose={toggleModal}
+        contentLabel="editDialog"
+      > 
+        <h1> test </h1> 
+          <input 
+            type="text"
+            onChange={e => setDescription(e.target.value)}
+          ></input>
+          <button 
+            type="button"
+            class="btn btn-warning"
+            onClick={toggleModal}
+          > Close Modal </button>
+          <button 
+            type="button"
+            class="btn btn-danger"
+            onClick={handleSubmit}
+          > Save changes 
+          </button> 
+      </Modal>
     </Fragment>
   );
 };

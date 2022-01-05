@@ -30,6 +30,23 @@ include CurrentUserConcern
     def show 
       render json: @task
     end 
+
+    
+    def update 
+      if @task.update(params.require(:task).permit(:description, :user_id, :status, :completed)) {
+        render json: {
+          task: @task, 
+          http_response: "200"
+        }
+      }
+      else 
+        render json: {
+          errors: @task.errors.full_messages, 
+          http_response: "500 internal server error"
+        }
+      end 
+    end 
+  
   
     def edit 
       render json: @task
