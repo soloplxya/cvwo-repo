@@ -33,9 +33,10 @@ include CurrentUserConcern
 
     
     def update 
-      if @task.update(params.require(:task).permit(:description, :user_id, :status, :completed)) {
+      task = Task.find(params[:id])
+      if task.update(params.require(:task).permit(:description, :user_id, :status, :completed)) {
         render json: {
-          task: @task, 
+          task: task, 
           http_response: "200"
         }
       }

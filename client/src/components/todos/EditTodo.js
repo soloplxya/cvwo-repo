@@ -25,9 +25,12 @@ const EditTodo = ({ todo }) => {
   }
 
   const updateTodo = (id) => {
-    const body = { description }
     axios
-    .put(`http://localhost:3001/tasks/${id}`, JSON.stringify(body), { withCredentials: true })
+    .put(`http://localhost:3001/tasks/${id}`, 
+    {task: {
+      description: description
+    }},
+    { withCredentials: true })
     .then(response => {
       console.log(response.status)
     })
