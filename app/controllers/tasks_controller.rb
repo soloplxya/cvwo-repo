@@ -3,7 +3,7 @@ include CurrentUserConcern
 
     def index 
       tasks = current_user.tasks
-      @tasks = tasks
+      @tasks = tasks.order("id DESC")
       render json: {
         tasks: @tasks, 
         http_response: "200"

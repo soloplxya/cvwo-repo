@@ -21,7 +21,7 @@ const ListTodos = props => {
     })
   };
 
-  // similar to component did mount 
+  
   useEffect(() => {
     getTodos();
   }, []);
