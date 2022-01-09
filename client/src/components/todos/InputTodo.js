@@ -74,7 +74,7 @@ useEffect(() => {
       <h1 className="text-center mt-5">Todo List</h1>
       <div id="todo-form-div">
       <form className="todo-form" onSubmit={onSubmitForm}>
-        <div className="combo">
+        <div style={{display: "flex", justifyContent: "center"}}>
           <input
             type="text"
             placeholder="Add your todo here!"
@@ -83,14 +83,15 @@ useEffect(() => {
             onChange={e => setAllValues({...allValues, ['description']: e.target.value})}
           /> 
           <select
-            id="tagList">
+            id="tagList"
+            onChange={e => setAllValues({...allValues, ['status']: e.target.value})}>
               { tags.map(tag => <option key={tag.id} value={tag.name}>{tag.name}</option> )}
           </select>
-        </div>
-        <button 
+          <button 
           type="submit"
           className="todo-button"
-        > Submit </button>
+          > Submit </button>
+        </div>
       </form>
       </div>
     </Fragment>

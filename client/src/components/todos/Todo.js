@@ -3,6 +3,7 @@ import { TiDirections, TiEdit } from 'react-icons/ti';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import Modal from "react-modal"
 import axios from 'axios'
+import TagBadge from "./TagBadge";
 
 
 const Todo = ({todo, setTodos, todos}) => {
@@ -66,10 +67,17 @@ const Todo = ({todo, setTodos, todos}) => {
     return (
         <Fragment>
         <div className="todo-row"> 
-          <div key={todo.id}>
-            {todo.description}
-          </div>
-            <div className='icons'>
+          <div style={{display: "flex", justifyContent: "center"}}>
+            <div key={todo.id}>
+              {todo.description}
+            </div> 
+            {
+              todo.status
+              ? <TagBadge text={todo.status}></TagBadge>
+              : <div></div>
+            }  
+          </div> 
+          <div className='icons'>
             <TiEdit
               type="button"
               className="edit-icon"

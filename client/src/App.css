@@ -61,6 +61,13 @@ h1 {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+#tagList {
+  background: transparent;
+  width: 20px;
+  border: 2px solid black;
+  font-size: 30px
+}
+
 .todo-input::placeholder {
   font-family: cursive;
   color: black;
@@ -206,4 +213,15 @@ h1 {
 
 #cancelBtn {
   background-color: crimson;
+}
+
+.Badge {
+  border-radius: 16px; 
+  background: #9ABCA7;
+  width: fit-content;
+  padding: 0 11px; 
+  margin-left: 20px;
+  color: black;
+  align-items: center;
+  height: 24px;
 }
