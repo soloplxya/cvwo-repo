@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Dashboard from './components/Dashboard.js'
+import Tag from "./components/Tag.js"
 import Index from './components/index.js'
 import LoginPage from './components/LoginPage.js'
 
@@ -72,6 +73,10 @@ export default class App extends React.Component {
               exact 
               path={'/LoginPage'} 
               element={ <LoginPage {...this.props} handleLogin={this.handleLogin} loggedInStatus={this.state.loggedInStatus}/> }/>
+            <Route
+             exact 
+             path={'/Tags'} 
+             element={ <Tag {...this.props} handleLogin={this.handleLogin} loggedInStatus={this.state.loggedInStatus}/> }/>
           </Routes>
         </BrowserRouter>
       </div>

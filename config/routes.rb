@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tags
   resources :sessions, only: [:create]
   resources :registrations, only: [:create]
   resources :tasks
