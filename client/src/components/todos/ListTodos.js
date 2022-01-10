@@ -4,13 +4,20 @@ import Todo from "./Todo"
 import InputTodo from "./InputTodo";
 import Command from "../filter/Command"
 
+
 const ListTodos = props => {
   const [todos, setTodos] = useState([]);
   const [tags, setTags] = useState([]);
+  const [filtered, setFiltered] = useState([]);
 
   
   const setParentTags = (tags) => {
     setTags(tags)
+  }
+
+  const setGPFilteredTodos = (filtered) => {
+    setFiltered(filtered)
+    console.log(filtered)
   }
 
 
@@ -32,15 +39,32 @@ const ListTodos = props => {
   useEffect(() => {
     getTodos();
   }, []);
+
   
 
   return (
     <Fragment>
-      <Command test={'/tags'} name={'Tags'} tags={tags} todos={todos} setTodos={setTodos}/> 
-      <InputTodo {...props} setParentTags={setParentTags} />
-        {todos.map((x,i) => {
-          return <Todo key={i} todo={x} setTodos={setTodos} todos={todos}></Todo>
-        })}
+      <Command  {...props} test={'/tags'} name={'Tags'} tags={tags} todos={todos} setTodos={setTodos} setGPFilteredTodos={setGPFilteredTodos}/> {
+        
+      }
+      {
+      // if search filter exists
+      filtered.length > 0
+        ? 
+        <div>
+        <InputTodo {...props} setParentTags={setParentTags} />
+          {filtered.map((x,i) => {
+            return <Todo key={i} todo={x} setTodos={setTodos} todos={filtered}></Todo>
+          })}
+        </div>
+        : 
+        <div>
+        <InputTodo {...props} setParentTags={setParentTags} />
+          {todos.map((x,i) => {
+            return <Todo key={i} todo={x} setTodos={setTodos} todos={todos}></Todo>
+          })}
+        </div>
+      }
     </Fragment>
   );
 };

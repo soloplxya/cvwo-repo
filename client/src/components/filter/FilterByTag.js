@@ -1,13 +1,26 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import "../../App.css";
 
 
-const FilterByTag = ({tags, todos, setTodos}) => {
+const FilterByTag = ({props, tags, todos, setTodos, setPFilteredTodos}) => {
+    const [searchInput, setSearchInput] = useState('');
     // pass in list of tags for the drop down 
     // pass in setState for todos 
     // pass in value for todos -> on change 
+    const setFilteredTodos = (filtered) => {
+      setPFilteredTodos(filtered)
+    }
+
     const handleChange = (value) => {
-      setTodos(todos.filter(todo => todo.status === value))
+      setSearchInput(value)
+      const filteredData =  todos.filter(todo => todo.status === value)
+      if (value !== "") {
+        setFilteredTodos(filteredData)
+      } else {
+        setFilteredTodos(todos)
+      }
+     
+      // setTodos(todos.filter(todo => todo.status === value))
     }
 
     return (
