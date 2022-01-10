@@ -8,7 +8,7 @@ const Command = ({props, test, name, tags, todos, setTodos, setGPFilteredTodos})
     const navigation = useNavigate();
 
     const setPFilteredTodos = (filtered) => {
-        props.setGPFilteredTodos(filtered)
+        setGPFilteredTodos(filtered)
     }
 
     return (
