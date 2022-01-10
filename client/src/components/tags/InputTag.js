@@ -4,8 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-const InputTag = props => {
-  // const navigation = useNavigate();
+const InputTag = () => {
   const [name, setName] = useState("");
 
 

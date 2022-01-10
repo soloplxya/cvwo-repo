@@ -6,6 +6,12 @@ import Command from "../filter/Command"
 
 const ListTodos = props => {
   const [todos, setTodos] = useState([]);
+  const [tags, setTags] = useState([]);
+
+  
+  const setParentTags = (tags) => {
+    setTags(tags)
+  }
 
 
   const getTodos = () => {
@@ -30,8 +36,8 @@ const ListTodos = props => {
 
   return (
     <Fragment>
-      <Command test={'/tags'} name={'Tags'}/> 
-      <InputTodo {...props} />
+      <Command test={'/tags'} name={'Tags'} tags={tags}/> 
+      <InputTodo {...props} setParentTags={setParentTags} />
         {todos.map((x,i) => {
           return <Todo key={i} todo={x} setTodos={setTodos} todos={todos}></Todo>
         })}

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-const InputTodo = props => {
+const InputTodo = (props) => {
  
   const navigation = useNavigate();
   const [tags, setTags] = useState([]);
@@ -15,7 +15,9 @@ const InputTodo = props => {
     completed: "", 
  });
 
-
+ const setParentTag = (tags) => {
+   props.setParentTags(tags)
+ }
 
  const getTags = () => {
   const url = "http://localhost:3001/tags"; 
@@ -25,10 +27,12 @@ const InputTodo = props => {
     ).then(response => {
     console.log(response.data)
     setTags(response.data.tags)
+    setParentTag(response.data.tags)
     // this.props.handleSuccessfulAuth(response.data);
   }).catch(error => {
     console.log("tag retrieving error", error)
   })
+
 };
 
 
