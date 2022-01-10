@@ -4,8 +4,13 @@ import FilterByTag from "./FilterByTag";
 import { useNavigate } from 'react-router-dom';
 
 
-const Command = ({test, name, tags, todos, setTodos}) => {
+const Command = ({props, test, name, tags, todos, setTodos, setGPFilteredTodos}) => {
     const navigation = useNavigate();
+
+    const setPFilteredTodos = (filtered) => {
+        props.setGPFilteredTodos(filtered)
+    }
+
     return (
         <Fragment>
             <div className="container">
@@ -17,7 +22,7 @@ const Command = ({test, name, tags, todos, setTodos}) => {
                         { name }
                     </button>
                         { test === "/tags" 
-                            ?  <FilterByTag tags={tags} todos={todos} setTodos={setTodos}/> 
+                            ?  <FilterByTag  {...props} tags={tags} todos={todos} setTodos={setTodos} setPFilteredTodos={setPFilteredTodos}/> 
                             :  <div /> 
                         }
                 </div> 
