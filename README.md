@@ -6,19 +6,11 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
-
-* System dependencies
+Version of Rails used : Rails 7.0.0
 
 * Configuration
+On development: 
+ENVIRONMENT VARIABLES: DATABASE_USERNAME, DATABASE_PASSWORD 
 
 * Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This application uses a postgreSQL database. 
