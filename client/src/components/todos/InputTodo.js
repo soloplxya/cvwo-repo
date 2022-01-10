@@ -36,9 +36,6 @@ const InputTodo = (props) => {
 };
 
 
-
-
-
 const onSubmitForm = event => {
   console.log('onsubmitfunction')
   const url = "http://localhost:3001/tasks"; 

@@ -4,7 +4,7 @@ import FilterByTag from "./FilterByTag";
 import { useNavigate } from 'react-router-dom';
 
 
-const Command = ({test, name, tags}) => {
+const Command = ({test, name, tags, todos, setTodos}) => {
     const navigation = useNavigate();
     return (
         <Fragment>
@@ -17,7 +17,7 @@ const Command = ({test, name, tags}) => {
                         { name }
                     </button>
                         { test === "/tags" 
-                            ?  <FilterByTag tags={tags}/> 
+                            ?  <FilterByTag tags={tags} todos={todos} setTodos={setTodos}/> 
                             :  <div /> 
                         }
                 </div> 

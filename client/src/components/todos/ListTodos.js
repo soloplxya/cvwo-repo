@@ -36,7 +36,7 @@ const ListTodos = props => {
 
   return (
     <Fragment>
-      <Command test={'/tags'} name={'Tags'} tags={tags}/> 
+      <Command test={'/tags'} name={'Tags'} tags={tags} todos={todos} setTodos={setTodos}/> 
       <InputTodo {...props} setParentTags={setParentTags} />
         {todos.map((x,i) => {
           return <Todo key={i} todo={x} setTodos={setTodos} todos={todos}></Todo>
