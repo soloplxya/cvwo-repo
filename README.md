@@ -1,16 +1,7 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby version : Rails 7.0.0
 
-Things you may want to cover:
+* Configuration: (ENV VARIABLES) DATABASE_USERNAME, DATABASE_PASSWORD 
 
-* Ruby version
-Version of Rails used : Rails 7.0.0
-
-* Configuration
-On development: 
-ENVIRONMENT VARIABLES: DATABASE_USERNAME, DATABASE_PASSWORD 
-
-* Database creation
-This application uses a postgreSQL database. 
+* Database creation: This application uses a postgreSQL database. 
