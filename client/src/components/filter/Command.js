@@ -1,14 +1,23 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import "../../App.css";
 import FilterByTag from "./FilterByTag";
 import { useNavigate } from 'react-router-dom';
 
 
-const Command = ({props, test, name, tags, todos, setTodos, setGPFilteredTodos}) => {
+const Command = (props) => {
+    const [loggedInStatus, setLoggedInStatus] = useState(props.loggedInStatus)
+    const [user, setUser] = useState(props.user)
     const navigation = useNavigate();
+    console.log(props)
 
     const setPFilteredTodos = (filtered) => {
-        setGPFilteredTodos(filtered)
+        props.setGPFilteredTodos(filtered)
+    }
+
+    const handleLogout = () => {
+        setLoggedInStatus('NOT_LOGGED_IN')
+        setUser('')
+        navigation('/loginPage')
     }
 
     return (
@@ -17,14 +26,19 @@ const Command = ({props, test, name, tags, todos, setTodos, setGPFilteredTodos})
                <div className="command" style={{ display:"flex", justifyContent:"space-between", alignItems:"center"}}> 
                     <button 
                         className="todo-button"
-                        onClick={() => navigation(test)}
+                        onClick={() => navigation(props.test)}
                         >
-                        { name }
+                        { props.name }
                     </button>
-                        { test === "/tags" 
-                            ?  <FilterByTag  {...props} tags={tags} todos={todos} setTodos={setTodos} setPFilteredTodos={setPFilteredTodos}/> 
+                        { props.test === "/tags" 
+                            ?  <FilterByTag  {...props} tags={props.tags} todos={props.todos} setTodos={props.setTodos} setPFilteredTodos={setPFilteredTodos}/> 
                             :  <div /> 
                         }
+                    <button
+                        className="todo-button"
+                        onClick={() => handleLogout()}>
+                        Logout
+                    </button>
                 </div> 
             </div>
       </Fragment>

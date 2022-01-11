@@ -15,6 +15,7 @@ export default class Login extends Component {
         this.handleChange = this.handleChange.bind(this); 
     }
 
+    
     handleSubmit(event) {
         // use axios to connect to the rails api
         axios.post("http://localhost:3001/sessions", {
@@ -44,6 +45,7 @@ export default class Login extends Component {
 
     render() {
         
+        console.log(this.props)
         const loginField = {
             maxWidth : "500px"
         };
@@ -53,7 +55,7 @@ export default class Login extends Component {
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"></link>
                 <main style={{display: "flex", justifyContent: "center"}}>
                     <form onSubmit={e => this.handleSubmit(e)}> 
-                        <label for="loginEmail"> Email Address </label> 
+                        <label htmlFor="loginEmail"> Email Address </label> 
                         <input 
                             id="loginEmail"
                             style={ loginField }
@@ -64,7 +66,7 @@ export default class Login extends Component {
                             onChange={e => this.handleChange(e)} 
                             required
                         /> 
-                        <label for="loginPassword"> Password </label> 
+                        <label htmlFor="loginPassword"> Password </label> 
                         <input 
                             id="loginPassword"
                             style={ loginField }
