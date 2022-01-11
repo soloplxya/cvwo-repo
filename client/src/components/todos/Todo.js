@@ -1,14 +1,34 @@
 import { Fragment, useState } from "react";
 import { TiDirections, TiEdit } from 'react-icons/ti';
 import { RiCloseCircleLine } from 'react-icons/ri';
+import { GrClose } from 'react-icons/gr'
+
 import Modal from "react-modal"
 import axios from 'axios'
 import TagBadge from "./TagBadge";
+import "../../App.css"
 
 
 const Todo = ({todo, setTodos, todos}) => {
     const [description, setDescription] = useState(todo.description);
     const [isOpen, setIsOpen] = useState(false);
+
+
+    // styles
+    const customStyles = {
+      content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        background: "#A9927D", 
+        transform: 'translate(-50%, -50%)',
+        border: "solid black 2px",
+      },
+      background: "red"
+    };
+    
 
     const deleteTodo = (id) => {
       console.log(id)
@@ -90,21 +110,35 @@ const Todo = ({todo, setTodos, todos}) => {
               isOpen={isOpen}
               onRequestClose={toggleModal}
               contentLabel="editDialog"
+              style={customStyles}
             > 
-              <h1> test </h1> 
-                <input 
-                  type="text"
-                  onChange={e => setDescription(e.target.value)}
-                ></input>
-                <button 
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+                <GrClose
                   type="button"
+                  className="close-icon"
                   onClick={toggleModal}
-                > Close Modal </button>
-                <button 
-                  type="button"
-                  onClick={handleSubmit}
-                > Save changes 
-                </button> 
+                  style={{ float: "right" }}
+                >
+                  Edit
+                </GrClose>
+                <h1> Edit </h1> 
+                <div style={{display:"flex", flexDirection:"column", justifyContent:"space-between"}}>
+                  <input 
+                    type="text"
+                    color="white"
+                    text-align="center"
+                    placeholder="Task description"
+                    style={{padding: "12px 20px", border: "2px solid black"}}
+                    onChange={e => setDescription(e.target.value)}
+                  ></input>
+                  <button 
+                    style={{marginTop: "20px", marginBottom: "20px"}}
+                    type="button"
+                    className="todo-button"
+                    onClick={handleSubmit}
+                  > Save changes 
+                  </button>           
+                </div> 
             </Modal>
             <RiCloseCircleLine
                 onClick={() => deleteTodo(todo.id)}
