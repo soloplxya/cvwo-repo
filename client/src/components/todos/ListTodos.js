@@ -5,10 +5,12 @@ import InputTodo from "./InputTodo";
 import Command from "../filter/Command"
 
 
+
 const ListTodos = props => {
   const [todos, setTodos] = useState([]);
   const [tags, setTags] = useState([]);
   const [filtered, setFiltered] = useState([]);
+  const [filterValue, setFilterValue] = useState("")
 
   
   const setParentTags = (tags) => {
@@ -44,12 +46,12 @@ const ListTodos = props => {
 
   return (
     <Fragment>
-      <Command  {...props} test={'/tags'} name={'Tags'} tags={tags} todos={todos} setTodos={setTodos} setGPFilteredTodos={setGPFilteredTodos}/> {
+      <Command  {...props} test={'/tags'} name={'Tags'} tags={tags} todos={todos} setTodos={setTodos} setGPFilteredTodos={setGPFilteredTodos} filter={filterValue} setFilterValue={setFilterValue}/> {
         
       }
       {
       // if search filter exists
-      filtered.length > 0
+      filtered.length > 0 || filterValue !== "nil"
         ? 
         <div>
         <InputTodo {...props} setParentTags={setParentTags} />

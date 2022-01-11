@@ -31,7 +31,7 @@ const Command = (props) => {
                         { props.name }
                     </button>
                         { props.test === "/tags" 
-                            ?  <FilterByTag  {...props} tags={props.tags} todos={props.todos} setTodos={props.setTodos} setPFilteredTodos={setPFilteredTodos}/> 
+                            ?  <FilterByTag  {...props} tags={props.tags} todos={props.todos} setTodos={props.setTodos} setPFilteredTodos={setPFilteredTodos} filter={props.filterValue} setFilterValue={props.setFilterValue}/> 
                             :  <div /> 
                         }
                     <button
