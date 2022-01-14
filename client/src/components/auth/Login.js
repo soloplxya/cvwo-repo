@@ -52,33 +52,42 @@ export default class Login extends Component {
 
         return (
             <div> 
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"></link>
-                <main style={{display: "flex", justifyContent: "center"}}>
+                <main>
                     <form onSubmit={e => this.handleSubmit(e)}> 
-                        <label htmlFor="loginEmail"> Email Address </label> 
-                        <input 
-                            id="loginEmail"
-                            style={ loginField }
-                            type="email"
-                            name="email" 
-                            placeholder="email" 
-                            value={this.state.email}
-                            onChange={e => this.handleChange(e)} 
-                            required
-                        /> 
-                        <label htmlFor="loginPassword"> Password </label> 
-                        <input 
-                            id="loginPassword"
-                            style={ loginField }
-                            type="password"
-                            name="password" 
-                            placeholder="password" 
-                            value={this.state.password}
-                            onChange={e => this.handleChange(e)} 
-                            required
-                        /> 
-                        <button type="submit"> Login </button> 
+                        <div style={{ display:"flex", justifyContent:"center"}}>
+                            <div style={{ display: "flex", justifyContent:"space-between", flexDirection: "column" }}>
+                                <h1> Login </h1>
+                                <label htmlFor="loginEmail"> Email Address </label> 
+                                <input 
+                                    className="todo-input"
+                                    type="email"
+                                    name="email" 
+                                    placeholder="email" 
+                                    value={this.state.email}
+                                    style={{width: "100%"}}
+                                    onChange={e => this.handleChange(e)} 
+                                    required
+                                /> 
+                                <label htmlFor="loginPassword"> Password </label> 
+                                <input 
+                                    className="todo-input"
+                                    type="password"
+                                    name="password" 
+                                    placeholder="password" 
+                                    value={this.state.password}
+                                    onChange={e => this.handleChange(e)} 
+                                    style={{width: "100%"}}
+                                    required
+                                /> 
+                                <button 
+                                    className="todo-button"
+                                    style={{ width: "200px", marginTop:"20px"}}
+                                    type="submit"> Login 
+                                </button> 
+                            </div>
+                        </div>
                     </form>
+                    
                 </main>
             </div>
         )
