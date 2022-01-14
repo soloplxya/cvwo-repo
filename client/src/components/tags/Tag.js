@@ -1,7 +1,5 @@
-import { Fragment, useState } from "react";
-import { TiDirections, TiEdit } from 'react-icons/ti';
+import { Fragment } from "react";
 import { RiCloseCircleLine } from 'react-icons/ri';
-import Modal from "react-modal"
 import axios from 'axios'
 
 

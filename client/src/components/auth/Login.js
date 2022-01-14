@@ -52,13 +52,14 @@ export default class Login extends Component {
 
         return (
             <div> 
-                <main>
+                <main style={{display: "flex", justifyContent: "center"}}>
                     <form onSubmit={e => this.handleSubmit(e)}> 
                         <div style={{ display:"flex", justifyContent:"center"}}>
                             <div style={{ display: "flex", justifyContent:"space-between", flexDirection: "column" }}>
                                 <h1> Login </h1>
                                 <label htmlFor="loginEmail"> Email Address </label> 
                                 <input 
+                                    id="loginEmail"
                                     className="todo-input"
                                     type="email"
                                     name="email" 
@@ -70,6 +71,7 @@ export default class Login extends Component {
                                 /> 
                                 <label htmlFor="loginPassword"> Password </label> 
                                 <input 
+                                    id="loginPassword"
                                     className="todo-input"
                                     type="password"
                                     name="password" 
