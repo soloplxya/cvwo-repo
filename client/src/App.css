@@ -63,9 +63,8 @@ h1 {
 
 #tagList {
   background: transparent;
-  width: 20px;
+  width: 150px;
   border: 2px solid black;
-  font-size: 30px
 }
 
 #filterTagList {

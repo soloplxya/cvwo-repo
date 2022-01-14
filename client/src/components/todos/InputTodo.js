@@ -80,12 +80,14 @@ useEffect(() => {
             type="text"
             placeholder="Add your todo here!"
             className="todo-input"
+            style={{width: "600px"}}
             value={allValues.description}
             onChange={e => setAllValues({...allValues, ['description']: e.target.value})}
           /> 
           <select
             id="tagList"
             onChange={e => setAllValues({...allValues, ['status']: e.target.value})}>
+              <option value="" disabled selected hidden>Choose Tag</option>
               { tags.map(tag => <option key={tag.id} value={tag.name}>{tag.name}</option> )}
           </select>
           <button 

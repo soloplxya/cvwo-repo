@@ -22,6 +22,7 @@ const FilterByTag = ({tags, todos, setPFilteredTodos, setFilterValue}) => {
               <select
                 id="filterTagList"
                 onChange={e => handleChange(e.target.value)}>
+                 <option value="" disabled selected hidden>Choose Filter</option>
                  <option key="nil" value="none">NIL</option>
                 { tags.map(tag => <option key={tag.id} value={tag.name}>{tag.name}</option> )}
               </select>

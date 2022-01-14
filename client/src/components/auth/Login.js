@@ -52,7 +52,7 @@ export default class Login extends Component {
 
         return (
             <div> 
-                <main style={{display: "flex", justifyContent: "center"}}>
+                <main>
                     <form onSubmit={e => this.handleSubmit(e)}> 
                         <div style={{ display:"flex", justifyContent:"center"}}>
                             <div style={{ display: "flex", justifyContent:"space-between", flexDirection: "column" }}>

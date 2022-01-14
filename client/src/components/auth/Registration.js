@@ -1,5 +1,4 @@
 import React, { Component } from 'react'; 
-import  { Link } from 'react-router-dom'
 import axios from 'axios'
 
 export default class Registration extends Component {
@@ -48,34 +47,53 @@ export default class Registration extends Component {
     render() {
         return (
             <div> 
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"></link>
                 <main style={{display: "flex", justifyContent: "center"}}>
                     <form onSubmit={e => this.handleSubmit(e)}> 
-                        <input 
-                            type="email"
-                            name="email" 
-                            placeholder="email" 
-                            value={this.state.email}
-                            onChange={e => this.handleChange(e)} 
-                            required
-                        /> 
-                        <input 
-                            type="password"
-                            name="password" 
-                            placeholder="password" 
-                            value={this.state.password}
-                            onChange={e => this.handleChange(e)} 
-                            required
-                        /> 
-                        <input 
-                            type="password"
-                            name="password_confirmation" 
-                            placeholder="password confirmation" 
-                            value={this.state.password_confirmation}
-                            onChange={e => this.handleChange(e)} 
-                            required
-                        /> 
-                        <button type="submit"> Register </button> 
+                        <div style={{ display:"flex", justifyContent:"center"}}>
+                            <div style={{ display: "flex", justifyContent:"space-between", flexDirection: "column"}}>
+                                <label htmlFor="registerEmail"> Email Address </label> 
+                                <input 
+                                    id="registerEmail"
+                                    type="email"
+                                    name="email" 
+                                    className="todo-input"
+                                    placeholder="email" 
+                                    value={this.state.email}
+                                    style={{ width: "100%"}}
+                                    onChange={e => this.handleChange(e)} 
+                                    required
+                                /> 
+                                <label htmlFor="registerPassword"> Password </label> 
+                                <input 
+                                    id="registerPassword"
+                                    type="password"
+                                    name="password" 
+                                    className="todo-input"
+                                    placeholder="password" 
+                                    value={this.state.password}
+                                    style={{ width: "100%"}}
+                                    onChange={e => this.handleChange(e)} 
+                                    required
+                                /> 
+                                <label htmlFor="registerPasswordConfirmation"> Password Confirmation </label> 
+                                <input 
+                                    id="registerPasswordConfirmation"
+                                    type="password"
+                                    name="password_confirmation" 
+                                    className="todo-input"
+                                    placeholder="password confirmation" 
+                                    style={{ width: "100%"}}
+                                    value={this.state.password_confirmation}
+                                    onChange={e => this.handleChange(e)} 
+                                    required
+                                /> 
+                                <button 
+                                    type="submit"
+                                    className="todo-button"
+                                    style={{marginTop: "20px"}}
+                                > Register </button> 
+                            </div>
+                        </div>
                     </form>
                 </main> 
             </div>
