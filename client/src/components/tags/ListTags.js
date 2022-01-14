@@ -14,7 +14,6 @@ const ListTags = props => {
       url, 
       { withCredentials: true }
       ).then(response => {
-      console.log(response.data)
       setTags(response.data.tags)
       // this.props.handleSuccessfulAuth(response.data);
     }).catch(error => {

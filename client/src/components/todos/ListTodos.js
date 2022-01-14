@@ -10,9 +10,9 @@ const ListTodos = props => {
   const [todos, setTodos] = useState([]);
   const [tags, setTags] = useState([]);
   const [filtered, setFiltered] = useState([]);
-  const [filterValue, setFilterValue] = useState("")
+  const [filterValue, setFilterValue] = useState("none")
 
-  
+
   const setParentTags = (tags) => {
     setTags(tags)
   }
@@ -29,29 +29,25 @@ const ListTodos = props => {
       url, 
       { withCredentials: true }
       ).then(response => {
-      console.log(response.data)
-      setTodos(response.data.tasks)
-      // this.props.handleSuccessfulAuth(response.data);
+        setTodos(response.data.tasks)
     }).catch(error => {
-      console.log("task retrieving error", error)
+      console.log("Task retrieving error", error)
     })
   };
 
-  
+
   useEffect(() => {
     getTodos();
   }, []);
 
-  
+
 
   return (
     <Fragment>
-      <Command  {...props} test={'/tags'} name={'Tags'} tags={tags} todos={todos} setTodos={setTodos} setGPFilteredTodos={setGPFilteredTodos} filter={filterValue} setFilterValue={setFilterValue}/> {
-        
-      }
+      <Command  {...props} test={'/tags'} name={'Tags'} tags={tags} todos={todos} setTodos={setTodos} setGPFilteredTodos={setGPFilteredTodos} filter={filterValue} setFilterValue={setFilterValue}/> 
       {
       // if search filter exists
-      filtered.length > 0 || filterValue !== "nil"
+      filtered.length > 0 || filterValue !== "none"
         ? 
         <div>
         <InputTodo {...props} setParentTags={setParentTags} />
@@ -72,5 +68,3 @@ const ListTodos = props => {
 };
 
 export default ListTodos;
-
-
