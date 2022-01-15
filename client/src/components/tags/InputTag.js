@@ -43,8 +43,8 @@ const onSubmitForm = event => {
                 type="text"
                 placeholder="Add a new tag here!"
                 className="todo-input"
+                style={{width: "725px"}}
                 value={name}
-                style={{ width: "400px" }}
                 onChange={e => setName(e.target.value)}
               />
             : <input
