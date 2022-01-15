@@ -28,6 +28,8 @@ export default class Login extends Component {
         ).then(response => {
             if (response.data.logged_in) {
                 this.props.handleSuccessfulAuth(response.data);
+            } else {
+                this.props.handleUnsuccessfulAuth();
             }
         }).catch(error => {
             console.log("login error", error)
@@ -44,8 +46,6 @@ export default class Login extends Component {
     }
 
     render() {
-        
-        console.log(this.props)
         const loginField = {
             maxWidth : "500px"
         };
@@ -86,6 +86,12 @@ export default class Login extends Component {
                                     style={{ width: "200px", marginTop:"20px"}}
                                     type="submit"> Login 
                                 </button> 
+                                <div style={{ display: "flex", justifyContent: "center", marginTop: "10px"}}> 
+                                    { this.props.wrongPassword 
+                                        ? <text style={{color: "black"}}> Wrong details! </text> 
+                                        : <div />
+                                    }
+                                </div>
                             </div>
                         </div>
                     </form>

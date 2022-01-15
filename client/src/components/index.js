@@ -11,12 +11,15 @@ class Index extends Component {
     }
     
     handleSuccessfulAuth(data) {
-        this.props.handleLogin(data); 
         const { navigation } = this.props;
-        navigation('/Dashboard');
+        try {
+            this.props.handleLogin(data);  
+            navigation('/Dashboard');
+        } catch (exception) {
+            console.log(exception); 
+            navigation('/Unauthorised');
+        }
     }
-
-    
 
 
     render() {

@@ -4,9 +4,13 @@ import { useNavigate } from 'react-router-dom';
 
 class LoginPage extends Component {
     
-    constructor() {  
-        super()
+    constructor(props) {  
+        super(props)
+        this.state = {
+            wrongPassword: false
+        }
         this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this)
+        this.handleUnsuccessfulAuth = this.handleUnsuccessfulAuth.bind(this)
     }
     
     handleSuccessfulAuth(data) {
@@ -15,11 +19,17 @@ class LoginPage extends Component {
         navigation('/Dashboard');
     }
 
+    handleUnsuccessfulAuth() {
+        this.setState({
+            wrongPassword: true,
+        });
+    }
+
 
     render() {
         return (
             <div> 
-                <Login handleSuccessfulAuth={this.handleSuccessfulAuth}/>
+                <Login handleSuccessfulAuth={this.handleSuccessfulAuth} handleUnsuccessfulAuth={this.handleUnsuccessfulAuth} wrongPassword={this.state.wrongPassword}/>
             </div>
         )
     }

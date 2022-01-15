@@ -5,6 +5,7 @@ import Dashboard from './components/Dashboard.js'
 import Tag from "./components/Tag.js"
 import Index from './components/index.js'
 import LoginPage from './components/LoginPage.js'
+import Unauthorised from './components/Unauthorised.js';
 
 
 
@@ -36,7 +37,6 @@ export default class App extends React.Component {
     .get("http://localhost:3001/logged_in", { withCredentials: true })
     .then(response => {
       if (response.data.logged_in && this.state.loggedInStatus === "NOT_LOGGED_IN") {
-
         this.setState({
           loggedInStatus: "LOGGED_IN", 
           user: response.data.user
@@ -77,6 +77,11 @@ export default class App extends React.Component {
              exact 
              path={'/Tags'} 
              element={ <Tag {...this.props} handleLogin={this.handleLogin} loggedInStatus={this.state.loggedInStatus}/> }/>
+            <Route 
+              exact 
+              path={'/Unauthorised'}
+              element={ <Unauthorised />}
+            />
           </Routes>
         </BrowserRouter>
       </div>
