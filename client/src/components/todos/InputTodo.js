@@ -1,4 +1,5 @@
 import axios from "axios";
+import {isMobile} from 'react-device-detect';
 import React, { Fragment, useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
@@ -76,14 +77,25 @@ useEffect(() => {
       <div id="todo-form-div">
       <form className="todo-form" onSubmit={onSubmitForm}>
         <div style={{display: "flex", justifyContent: "center"}}>
-          <input
-            type="text"
-            placeholder="Add your todo here!"
-            className="todo-input"
-            style={{width: "600px"}}
-            value={allValues.description}
-            onChange={e => setAllValues({...allValues, ['description']: e.target.value})}
-          /> 
+
+          { !isMobile 
+            ? <input
+                type="text"
+                placeholder="Add your todo here!"
+                className="todo-input"
+                style={{width: "600px"}}
+                value={allValues.description}
+                onChange={e => setAllValues({...allValues, ['description']: e.target.value})}
+               /> 
+            : <input
+                type="text"
+                placeholder="Add your todo here!"
+                className="todo-input"
+                style={{width: "200px"}}
+                value={allValues.description}
+                onChange={e => setAllValues({...allValues, ['description']: e.target.value})}
+              /> 
+          }
           <select
             id="tagList"
             onChange={e => setAllValues({...allValues, ['status']: e.target.value})}>

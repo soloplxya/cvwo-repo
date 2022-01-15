@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { Fragment, useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import {isMobile} from 'react-device-detect';
 
 
 
@@ -37,13 +37,26 @@ const onSubmitForm = event => {
       <h1 className="text-center mt-5">Tag List</h1>
       <div id="todo-form-div">
       <form className="todo-form" onSubmit={onSubmitForm}>
-        <input
-          type="text"
-          placeholder="Add a new tag here!"
-          className="todo-input"
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
+        
+      { !isMobile 
+            ? <input
+                type="text"
+                placeholder="Add a new tag here!"
+                className="todo-input"
+                value={name}
+                style={{ width: "400px" }}
+                onChange={e => setName(e.target.value)}
+              />
+            : <input
+                type="text"
+                placeholder="Add a new tag here!"
+                className="todo-input"
+                value={name}
+                style={{ width: "300px" }}
+                onChange={e => setName(e.target.value)}
+              />
+          }
+       
         <button 
           type="submit"
           className="todo-button"
