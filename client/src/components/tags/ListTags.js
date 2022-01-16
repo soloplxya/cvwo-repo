@@ -15,7 +15,6 @@ const ListTags = props => {
       { withCredentials: true }
       ).then(response => {
       setTags(response.data.tags)
-      // this.props.handleSuccessfulAuth(response.data);
     }).catch(error => {
       console.log("tag retrieving error", error)
     })
@@ -30,7 +29,7 @@ const ListTags = props => {
   return (
     <Fragment>
       <Command test={'/Dashboard'} name={'Dashboard'}/> 
-      <InputTag {...props} />
+      <InputTag {...props} tags={tags} setTags={setTags} />
         {tags.map((x,i) => {
             return <Tag key={i} tag={x} setTags={setTags} tags={tags}></Tag>
         })}

@@ -50,14 +50,14 @@ const ListTodos = props => {
       filtered.length > 0 || filterValue !== "none"
         ? 
         <div>
-        <InputTodo {...props} setParentTags={setParentTags} />
+        <InputTodo {...props} setParentTags={setParentTags} todos={todos} setTodos={setTodos}/>
           {filtered.map((x,i) => {
             return <Todo key={i} todo={x} setTodos={setTodos} todos={filtered}></Todo>
           })}
         </div>
         : 
         <div>
-        <InputTodo {...props} setParentTags={setParentTags} />
+        <InputTodo {...props} setParentTags={setParentTags} todos={todos} setTodos={setTodos}/>
           {todos.map((x,i) => {
             return <Todo key={i} todo={x} setTodos={setTodos} todos={todos}></Todo>
           })}

@@ -14,61 +14,76 @@ const InputTodo = (props) => {
     user_id: "",
     status: "", 
     completed: "", 
- });
-
- const setParentTag = (tags) => {
-   props.setParentTags(tags)
- }
-
- const getTags = () => {
-  const url = "http://localhost:3001/tags"; 
-  axios.get(
-    url, 
-    { withCredentials: true }
-    ).then(response => {
-    console.log(response.data)
-    setTags(response.data.tags)
-    setParentTag(response.data.tags)
-    // this.props.handleSuccessfulAuth(response.data);
-  }).catch(error => {
-    console.log("tag retrieving error", error)
-  })
-
-};
+  });
 
 
-const onSubmitForm = event => {
-  console.log('onsubmitfunction')
-  const url = "http://localhost:3001/tasks"; 
-  axios.post(
-    url, 
-    { task: {
-        description: allValues.description, 
-        user_id: allValues.user_id, 
-        status: allValues.status, 
-        complete: allValues.complete,
-    }}, 
-    { withCredentials: true }
-  ).then(response => {
-    if (response.data.status === "created") {
-        console.log('task created')
-        // this.props.handleSuccessfulAuth(response.data);
+  const setParentTag = (tags) => {
+    props.setParentTags(tags)
+  }
+
+  const getTags = () => {
+    const url = "http://localhost:3001/tags"; 
+    axios.get(
+      url, 
+      { withCredentials: true }
+      ).then(response => {
+      console.log(response.data)
+      setTags(response.data.tags)
+      setParentTag(response.data.tags)
+    }).catch(error => {
+      console.log("tag retrieving error", error)
+    })
+
+  };
+
+
+  const onSubmitForm = event => {
+    if (allValues.description.trim() !== "") {
+      const url = "http://localhost:3001/tasks"; 
+      axios.post(
+        url, 
+        { task: {
+            description: allValues.description, 
+            user_id: allValues.user_id, 
+            status: allValues.status, 
+            complete: allValues.complete,
+        }}, 
+        { withCredentials: true }
+      ).then(response => {
+        if (response.data.status === "created") {
+            console.log('task created')
+        }
+      }).catch(error => {
+        console.log("task creation error", error)
+      }).finally(
+        refreshPage()
+      )
+
+      event.preventDefault()
+    } else {
+        alert("Description for task should not be empty!")
     }
-  }).catch(error => {
-    console.log("task creation error", error)
-  }).finally(
-     window.location("/dashboard")
-  )
-
-  event.preventDefault()
-
-};
+  };
 
 
-useEffect(() => {
-  setAllValues({...allValues, ['user_id']: props.user.id})
-  getTags()
-}, [navigation, props.loggedInStatus, props.user])
+  const refreshPage = () => {
+    const url = "http://localhost:3001/tasks"; 
+      axios.get(
+        url, 
+        { withCredentials: true }
+        ).then(response => {
+          props.setTodos(response.data.tasks)
+      }).catch(error => {
+        console.log("Task retrieving error", error)
+      })
+  };
+
+
+
+  useEffect(() => {
+    setAllValues({...allValues, ['user_id']: props.user.id})
+    getTags()
+  }, [navigation, props.loggedInStatus, props.user])
 
 
   return (
