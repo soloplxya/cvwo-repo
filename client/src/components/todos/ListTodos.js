@@ -52,14 +52,14 @@ const ListTodos = props => {
         <div>
         <InputTodo {...props} setParentTags={setParentTags} todos={todos} setTodos={setTodos}/>
           {filtered.map((x,i) => {
-            return <Todo key={i} todo={x} setTodos={setTodos} todos={filtered}></Todo>
+            return <Todo key={i} todo={x} setTodos={setTodos} todos={filtered} tags={tags}></Todo>
           })}
         </div>
         : 
         <div>
         <InputTodo {...props} setParentTags={setParentTags} todos={todos} setTodos={setTodos}/>
           {todos.map((x,i) => {
-            return <Todo key={i} todo={x} setTodos={setTodos} todos={todos}></Todo>
+            return <Todo key={i} todo={x} setTodos={setTodos} todos={todos} tags={tags}></Todo>
           })}
         </div>
       }

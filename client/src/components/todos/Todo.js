@@ -9,8 +9,9 @@ import TagBadge from "./TagBadge";
 import "../../App.css"
 
 
-const Todo = ({todo, setTodos, todos}) => {
+const Todo = ({todo, setTodos, todos, tags}) => {
     const [description, setDescription] = useState(todo.description);
+    const [name, setName] = useState(todo.status);
     const [isOpen, setIsOpen] = useState(false);
 
 
@@ -57,18 +58,17 @@ const Todo = ({todo, setTodos, todos}) => {
       ); 
     }; 
 
-
     function editTodo(id)  {
       let editTodos = todos.map((todo) => {
         if (todo.id === id) {
           todo.description = description;
+          todo.status = name; 
         }
         return todo;
       });
       setTodos(editTodos);
     };
 
-  
 
     function toggleModal() {
       setIsOpen(!isOpen);
@@ -131,6 +131,12 @@ const Todo = ({todo, setTodos, todos}) => {
                     style={{padding: "12px 20px", border: "2px solid black"}}
                     onChange={e => setDescription(e.target.value)}
                   ></input>
+                  <select
+                    style={{marginTop:"20px", width: "300px", border: "2px solid black", padding: "12px 18px"}}
+                    onChange={e => setName(e.target.value)}>
+                      <option value="" disabled selected hidden>Edit Tag</option>
+                      { tags.map(tag => <option key={tag.id} value={tag.name}>{tag.name}</option> )}
+                  </select>
                   <button 
                     style={{marginTop: "20px", marginBottom: "20px"}}
                     type="button"
