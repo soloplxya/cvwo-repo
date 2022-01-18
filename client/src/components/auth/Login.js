@@ -20,6 +20,7 @@ export default class Login extends Component {
     
     handleSubmit(event) {
         // use axios to connect to the rails api
+        console.log(process.env.NODE_ENV);
         axios.post(this.API_SESSIONS_URL, {
             user: {
                 email: this.state.email,
