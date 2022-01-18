@@ -1,4 +1,5 @@
 import axios from "axios";
+import { config } from '../../Constants';
 import {isMobile} from 'react-device-detect';
 import React, { Fragment, useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
@@ -6,7 +7,9 @@ import { useNavigate } from 'react-router-dom';
 
 
 const InputTodo = (props) => {
- 
+  
+  const TAG_URL = config.url.API_TAGS_URL;
+  const TASK_URL = config.url.API_TASKS_URL;
   const navigation = useNavigate();
   const [tags, setTags] = useState([]);
   const [allValues, setAllValues] = useState({
@@ -22,9 +25,8 @@ const InputTodo = (props) => {
   }
 
   const getTags = () => {
-    const url = "http://localhost:3001/tags"; 
     axios.get(
-      url, 
+      TAG_URL, 
       { withCredentials: true }
       ).then(response => {
       console.log(response.data)
@@ -39,9 +41,8 @@ const InputTodo = (props) => {
 
   const onSubmitForm = event => {
     if (allValues.description.trim() !== "") {
-      const url = "http://localhost:3001/tasks"; 
       axios.post(
-        url, 
+        TASK_URL, 
         { task: {
             description: allValues.description, 
             user_id: allValues.user_id, 
@@ -66,10 +67,10 @@ const InputTodo = (props) => {
   };
 
 
+
   const refreshPage = () => {
-    const url = "http://localhost:3001/tasks"; 
       axios.get(
-        url, 
+        TASK_URL, 
         { withCredentials: true }
         ).then(response => {
           props.setTodos(response.data.tasks)

@@ -1,7 +1,10 @@
 import React, { Component } from 'react'; 
-import axios from 'axios'
+import { config } from '../../Constants';
+import axios from 'axios';
+
 
 export default class Registration extends Component {
+    API_REGISTRATION_URL = config.url.API_REGISTRATION_URL;
     constructor(props) {
         super(props); 
 
@@ -18,7 +21,7 @@ export default class Registration extends Component {
 
     handleSubmit(event) {
         // use axios to connect to the rails api
-        axios.post("http://localhost:3001/registrations", {
+        axios.post(this.API_REGISTRATION_URL, {
             user: {
                 email: this.state.email,
                 password: this.state.password, 

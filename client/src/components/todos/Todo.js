@@ -1,15 +1,17 @@
 import { Fragment, useState } from "react";
-import { TiDirections, TiEdit } from 'react-icons/ti';
+import { TiEdit } from 'react-icons/ti';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import { GrClose } from 'react-icons/gr'
 
-import Modal from "react-modal"
-import axios from 'axios'
+import Modal from "react-modal";
+import axios from 'axios';
+import { config } from '../../Constants';
 import TagBadge from "./TagBadge";
-import "../../App.css"
+import "../../App.css";
 
 
 const Todo = ({todo, setTodos, todos, tags}) => {
+    const TASKS_URL = config.url.API_TASKS_URL;
     const [description, setDescription] = useState(todo.description);
     const [name, setName] = useState(todo.status);
     const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +36,7 @@ const Todo = ({todo, setTodos, todos, tags}) => {
     const deleteTodo = (id) => {
       console.log(id)
       axios
-      .delete(`http://localhost:3001/tasks/${id}`, { withCredentials: true })
+      .delete(`${TASKS_URL}/${id}`, { withCredentials: true })
       .then(response => {
         console.log(response.status)
       })
@@ -44,9 +46,10 @@ const Todo = ({todo, setTodos, todos, tags}) => {
 
     const updateTodo = (id) => {
       axios
-      .put(`http://localhost:3001/tasks/${id}`, 
+      .put(`${TASKS_URL}/${id}`, 
       { task: {
-        description: description
+        description: description, 
+        status: name,
       }},
       { withCredentials: true })
       .then(response => {

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react';
+import { config } from './Constants';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Dashboard from './components/Dashboard.js'
 import Tag from "./components/Tag.js"
@@ -10,6 +11,7 @@ import Unauthorised from './components/Unauthorised.js';
 
 
 export default class App extends React.Component {
+  API_LOGIN_URL = config.url.API_LOGIN_URL; 
   constructor(props) {
       super(props);
       this.state = {
@@ -34,7 +36,7 @@ export default class App extends React.Component {
 
   checkLoginStatus() {
     axios
-    .get("http://localhost:3001/logged_in", { withCredentials: true })
+    .get(this.API_LOGIN_URL, { withCredentials: true })
     .then(response => {
       if (response.data.logged_in && this.state.loggedInStatus === "NOT_LOGGED_IN") {
         this.setState({

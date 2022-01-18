@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import axios from "axios";
+import { config } from '../../Constants';
 import Todo from "./Todo"
 import InputTodo from "./InputTodo";
 import Command from "../filter/Command"
@@ -7,6 +8,7 @@ import Command from "../filter/Command"
 
 
 const ListTodos = props => {
+  const TASK_URL = config.url.API_TASKS_URL;
   const [todos, setTodos] = useState([]);
   const [tags, setTags] = useState([]);
   const [filtered, setFiltered] = useState([]);
@@ -24,9 +26,8 @@ const ListTodos = props => {
 
 
   const getTodos = () => {
-    const url = "http://localhost:3001/tasks"; 
     axios.get(
-      url, 
+      TASK_URL, 
       { withCredentials: true }
       ).then(response => {
         setTodos(response.data.tasks)

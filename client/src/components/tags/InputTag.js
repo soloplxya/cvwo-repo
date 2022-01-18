@@ -1,17 +1,19 @@
 import axios from "axios";
+import { config } from '../../Constants'
 import React, { Fragment, useState, useEffect } from "react";
-import {ConsoleView, isMobile} from 'react-device-detect';
+import {isMobile} from 'react-device-detect';
 
 
 
 const InputTag = (props) => {
   const [name, setName] = useState("");
+  const TAG_URL = config.url.API_TAGS_URL; 
 
   const onSubmitForm = event => {
     if (name.trim() !== "") { 
-      const url = "http://localhost:3001/tags"; 
+     
       axios.post(
-        url, 
+        TAG_URL, 
         { tags: {
             name: name,
         }}, 
@@ -35,9 +37,8 @@ const InputTag = (props) => {
 
 
   const refreshPage = () => {
-      const url = "http://localhost:3001/tags"; 
       axios.get(
-        url, 
+        TAG_URL, 
         { withCredentials: true }
         ).then(response => {
         props.setTags(response.data.tags)

@@ -1,13 +1,15 @@
 import { Fragment } from "react";
 import { RiCloseCircleLine } from 'react-icons/ri';
+import { config } from '../../Constants'
 import axios from 'axios'
 
+const tagsURL = config.url.API_TAGS_URL;
 
 const Tag = ({tag, setTags, tags}) => {
 
     const deleteTag = (id) => {
       axios
-      .delete(`http://localhost:3001/tags/${id}`, { withCredentials: true })
+      .delete(`${tagsURL}/${id}`, { withCredentials: true })
       .then(response => {
         console.log(response.status)
       })

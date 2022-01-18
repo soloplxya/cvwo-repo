@@ -1,3 +1,4 @@
+import { config } from '../../Constants'
 import React, { Fragment, useEffect, useState } from "react";
 import axios from "axios";
 import Tag from "./Tag"
@@ -9,7 +10,7 @@ const ListTags = props => {
 
 
   const getTags = () => {
-    const url = "http://localhost:3001/tags"; 
+    const url = config.url.API_TAGS_URL; 
     axios.get(
       url, 
       { withCredentials: true }
