@@ -1,13 +1,15 @@
 class RegistrationsController < ApplicationController 
     def create 
+        puts "create"
         user = User.create!(
             email: params['user']['email'], 
             password: params['user']['password'], 
-            password_confirmation: params['user']['password']
+            password_confirmation: params['user']['password'],
+            token: Digest::SHA1.hexdigest(SecureRandom.hex(32))
         )
 
         if user 
-            session[:user_id] = user.id 
+            puts "user created"
             render json: {
                 status: :created, 
                 user: user

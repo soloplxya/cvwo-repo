@@ -22,11 +22,12 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    this.checkLoginStatus()
+    // this.checkLoginStatus()
   }
 
 
   handleLogin(data) {
+    localStorage.setItem('token', data.user.token)
     this.setState({
         loggedInStatus: "LOGGED_IN", 
         user: data.user, 

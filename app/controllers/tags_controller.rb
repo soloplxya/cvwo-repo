@@ -1,17 +1,17 @@
 class TagsController < ApplicationController
-  include CurrentUserConcern 
+include CurrentUserConcern 
   
       def index 
-        tags = current_user.tags
-        @tags = tags.order("id DESC")
+        tags = @current_user.tags
+        tags = tags.order("id DESC")
         render json: {
-          tags: @tags, 
+          tags: tags, 
           http_response: "200"
         }
       end 
   
       def create 
-        user_now = current_user
+        user_now = @current_user
         tag = user_now.tags.new(params.require(:tags).permit(:name))
         if tag.save{
           render json: {
@@ -21,7 +21,7 @@ class TagsController < ApplicationController
         }
         else 
           render json: {
-            errors: @tag.errors.full_messages, 
+            errors: tag.errors.full_messages, 
             http_response: "500 internal server error"
           }
         end 

@@ -1,6 +1,5 @@
 class AuthenticationError < StandardError; end
 class ApplicationController < ActionController::Base
-include CurrentUserConcern
     skip_before_action :verify_authenticity_token 
 
     helper_method :logged_in?, :current_user, :authorized_user?

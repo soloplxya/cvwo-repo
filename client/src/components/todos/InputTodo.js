@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const InputTodo = (props) => {
-  
+
   const TAG_URL = config.url.API_TAGS_URL;
   const TASK_URL = config.url.API_TASKS_URL;
   const navigation = useNavigate();
@@ -25,9 +25,10 @@ const InputTodo = (props) => {
   }
 
   const getTags = () => {
+    const token = localStorage.getItem('token')
     axios.get(
       TAG_URL, 
-      { withCredentials: true }
+      { withCredentials: true, headers: {Authorization: token}}
       ).then(response => {
       console.log(response.data)
       setTags(response.data.tags)
@@ -40,6 +41,7 @@ const InputTodo = (props) => {
 
 
   const onSubmitForm = event => {
+    const token = localStorage.getItem('token')
     if (allValues.description.trim() !== "") {
       axios.post(
         TASK_URL, 
@@ -49,16 +51,16 @@ const InputTodo = (props) => {
             status: allValues.status, 
             complete: allValues.complete,
         }}, 
-        { withCredentials: true }
+        { withCredentials: true, headers: {Authorization: token}}
       ).then(response => {
         if (response.data.status === "created") {
             console.log('task created')
         }
       }).catch(error => {
         console.log("task creation error", error)
-      }).finally(
+      }).finally(() => {
         refreshPage()
-      )
+      })
 
       event.preventDefault()
     } else {
@@ -69,14 +71,15 @@ const InputTodo = (props) => {
 
 
   const refreshPage = () => {
-      axios.get(
-        TASK_URL, 
-        { withCredentials: true }
-        ).then(response => {
-          props.setTodos(response.data.tasks)
-      }).catch(error => {
-        console.log("Task retrieving error", error)
-      })
+    const token = localStorage.getItem('token')
+    axios.get(
+      TASK_URL, 
+      { withCredentials: true, headers: { Authorization: token } }
+      ).then(response => {
+        props.setTodos(response.data.tasks)
+    }).catch(error => {
+      console.log("Task retrieving error", error)
+    })
   };
 
 

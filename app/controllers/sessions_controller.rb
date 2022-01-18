@@ -1,14 +1,10 @@
-class SessionsController < ApplicationController 
-include CurrentUserConcern 
-
+class SessionsController < ApplicationController
     def create 
       user = User
               .find_by(email: params["user"]["email"])
               .try(:authenticate, params["user"]["password"]) 
 
       if user 
-        # store this user id to implement the cookie
-        session[:user_id] = user.id 
         render json: {
             status: :created, 
             logged_in: true, 
@@ -24,12 +20,16 @@ include CurrentUserConcern
     end
 
     def logged_in
-      if @current_user
+      user = User
+      .find_by(email: params["user"]["email"])
+      .try(:authenticate, params["user"]["password"]) 
+      
+      if user
         render json: {
             logged_in: true, 
-            user: @current_user
+            user: user
         }
-      else 
+      else
         render json: {
             logged_in: false
         }

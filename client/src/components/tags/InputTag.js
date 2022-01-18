@@ -6,18 +6,19 @@ import {isMobile} from 'react-device-detect';
 
 
 const InputTag = (props) => {
+ 
   const [name, setName] = useState("");
   const TAG_URL = config.url.API_TAGS_URL; 
 
   const onSubmitForm = event => {
+    const token = localStorage.getItem('token')
     if (name.trim() !== "") { 
-     
       axios.post(
         TAG_URL, 
         { tags: {
             name: name,
         }}, 
-        { withCredentials: true }
+        { withCredentials: true, headers: {Authorization: token}},
       ).then(response => {
         if (response.data.status === "created") {
             console.log('tag created')
@@ -25,7 +26,7 @@ const InputTag = (props) => {
       }).catch(error => {
         console.log("tag creation error", error)
       }).finally(
-          refreshPage()
+          () => refreshPage()
       )
 
       event.preventDefault();
@@ -37,9 +38,10 @@ const InputTag = (props) => {
 
 
   const refreshPage = () => {
+      const token = localStorage.getItem('token')
       axios.get(
         TAG_URL, 
-        { withCredentials: true }
+        { withCredentials: true, headers:  {Authorization: token} }, 
         ).then(response => {
         props.setTags(response.data.tags)
       }).catch(error => {

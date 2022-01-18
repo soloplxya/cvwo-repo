@@ -6,10 +6,14 @@ module CurrentUserConcern
  end
 
  def set_current_user
-    if session[:user_id]
-        @current_user = User.find(session[:user_id])
-    else 
-        @current_user = nil
+    token = request.headers["Authorization"]
+    if !token
+      render status: 401, json: {}
     end
- end 
+    @current_user = User.find_by(token: request.headers["Authorization"])
+    if !@current_user
+      puts "user does not exist"
+      render status: 401, json: {}
+    end 
+  end
 end

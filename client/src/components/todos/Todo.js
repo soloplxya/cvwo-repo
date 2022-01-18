@@ -34,9 +34,10 @@ const Todo = ({todo, setTodos, todos, tags}) => {
     
 
     const deleteTodo = (id) => {
+      const token = localStorage.getItem('token')
       console.log(id)
       axios
-      .delete(`${TASKS_URL}/${id}`, { withCredentials: true })
+      .delete(`${TASKS_URL}/${id}`, { withCredentials: true, headers: {Authorization: token}})
       .then(response => {
         console.log(response.status)
       })
@@ -45,13 +46,14 @@ const Todo = ({todo, setTodos, todos, tags}) => {
     }; 
 
     const updateTodo = (id) => {
+      const token = localStorage.getItem('token')
       axios
       .put(`${TASKS_URL}/${id}`, 
       { task: {
         description: description, 
         status: name,
       }},
-      { withCredentials: true })
+      { withCredentials: true, headers: {Authorization: token}})
       .then(response => {
         console.log(response.status)
       })

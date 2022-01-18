@@ -17,6 +17,7 @@ const Command = (props) => {
     const handleLogout = () => {
         setLoggedInStatus('NOT_LOGGED_IN')
         setUser('')
+        localStorage.clear()
         navigation('/loginPage')
     }
 

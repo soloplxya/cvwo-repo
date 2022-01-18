@@ -2,7 +2,7 @@ class TasksController < ApplicationController
 include CurrentUserConcern 
 
     def index 
-      tasks = current_user.tasks
+      tasks = @current_user.tasks
       tasks = tasks.order("id DESC")
       render json: {
         tasks: tasks, 
@@ -11,7 +11,7 @@ include CurrentUserConcern
     end 
 
     def create 
-      user_now = current_user
+      user_now = @current_user
       task = user_now.tasks.new(params.require(:task).permit(:description, :user_id, :status, :completed))
       if task.save{
         render json: {

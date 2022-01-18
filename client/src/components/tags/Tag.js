@@ -6,10 +6,11 @@ import axios from 'axios'
 const tagsURL = config.url.API_TAGS_URL;
 
 const Tag = ({tag, setTags, tags}) => {
-
+  
     const deleteTag = (id) => {
+      const token = localStorage.getItem('token')
       axios
-      .delete(`${tagsURL}/${id}`, { withCredentials: true })
+      .delete(`${tagsURL}/${id}`, { withCredentials: true, headers: { Authorization: token } })
       .then(response => {
         console.log(response.status)
       })
