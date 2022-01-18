@@ -3,25 +3,25 @@ include CurrentUserConcern
 
     def index 
       tasks = current_user.tasks
-      @tasks = tasks.order("id DESC")
+      tasks = tasks.order("id DESC")
       render json: {
-        tasks: @tasks, 
+        tasks: tasks, 
         http_response: "200"
       }
     end 
 
     def create 
       user_now = current_user
-      @task = user_now.tasks.new(params.require(:task).permit(:description, :user_id, :status, :completed))
-      if @task.save{
+      task = user_now.tasks.new(params.require(:task).permit(:description, :user_id, :status, :completed))
+      if task.save{
         render json: {
-          task: @task, 
+          task: task, 
           http_response: "200"
         }
       }
       else 
         render json: {
-          errors: @task.errors.full_messages, 
+          errors: task.errors.full_messages, 
           http_response: "500 internal server error"
         }
       end 
@@ -42,7 +42,7 @@ include CurrentUserConcern
       }
       else 
         render json: {
-          errors: @task.errors.full_messages, 
+          errors: task.errors.full_messages, 
           http_response: "500 internal server error"
         }
       end 
@@ -53,6 +53,7 @@ include CurrentUserConcern
       render json: @task
     end 
   
+
     def destroy
       task = Task.find(params[:id])
       task.destroy
