@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Login from './auth/Login';
+import  { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
+
 
 class LoginPage extends Component {
     
@@ -30,7 +32,8 @@ class LoginPage extends Component {
         return (
             <div> 
                 <Login handleSuccessfulAuth={this.handleSuccessfulAuth} handleUnsuccessfulAuth={this.handleUnsuccessfulAuth} wrongPassword={this.state.wrongPassword}/>
-            </div>
+                <Link to='/' style={{display: "flex", justifyContent: "center", marginTop:"10px"}}> Yet to register? Click here to login. </Link> 
+            </div>   
         )
     }
 }
