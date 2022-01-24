@@ -92,8 +92,8 @@ const Todo = ({todo, setTodos, todos, tags}) => {
     return (
         <Fragment>
         <div className="todo-row"> 
-          <div style={{display: "flex", justifyContent: "center"}}>
-            <div key={todo.id}>
+          <div style={{display: "flex", justifyContent: "center", flexWrap: "wrap"}}>
+            <div key={todo.id} style={{textOverflow: "ellipsis", whiteSpace: "nowrap", width: "200px", display: "inline-block", overflow:"hidden"}}>
               {todo.description}
             </div> 
             {
@@ -117,7 +117,6 @@ const Todo = ({todo, setTodos, todos, tags}) => {
               contentLabel="editDialog"
               style={customStyles}
             > 
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
                 <GrClose
                   type="button"
                   className="close-icon"

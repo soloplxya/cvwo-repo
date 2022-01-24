@@ -59,6 +59,7 @@ h1 {
   background: transparent;
   color: black;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-overflow: ellipsis;
 }
 
 #tagList {
@@ -119,6 +120,7 @@ h1 {
   padding: 16px;
   border-radius: 5px;
   width: 50%;
+  flex-wrap: wrap;
 }
 
 .todo-row:nth-child(4n + 1) {

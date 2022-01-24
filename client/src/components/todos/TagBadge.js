@@ -4,7 +4,7 @@ import '../../App.css';
 
 const TagBadge = ({text}) => {
     return (
-        <div className="Badge"> 
+        <div className="Badge" style={{textOverflow: "ellipsis", whiteSpace: "nowrap", width: "200px", display: "inline-block", overflow:"hidden"}}> 
             { text }
         </div>
     )

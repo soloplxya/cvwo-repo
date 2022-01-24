@@ -28,7 +28,7 @@ const Command = (props) => {
                     <button 
                         className="todo-button"
                         onClick={() => navigation(props.test)}
-                        >
+                    >
                         { props.name }
                     </button>
                         { props.test === "/tags" 

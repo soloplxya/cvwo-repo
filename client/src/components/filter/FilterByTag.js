@@ -1,11 +1,8 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import "../../App.css";
 
 
 const FilterByTag = ({tags, todos, setPFilteredTodos, setFilterValue}) => {
-    // pass in list of tags for the drop down 
-    // pass in setState for todos 
-    // pass in value for todos -> on change 
     const setFilteredTodos = (filtered) => {
       setPFilteredTodos(filtered)
     }

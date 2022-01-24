@@ -1,6 +1,6 @@
 import axios from "axios";
 import { config } from '../../Constants'
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState } from "react";
 import {isMobile} from 'react-device-detect';
 
 
@@ -64,6 +64,7 @@ const InputTag = (props) => {
                   className="todo-input"
                   style={{width: "725px"}}
                   value={name}
+                  maxLength="30"
                   onChange={e => setName(e.target.value)}
                 />
               : <input
@@ -72,6 +73,7 @@ const InputTag = (props) => {
                   className="todo-input"
                   value={name}
                   style={{ width: "300px" }}
+                  maxlength="30"
                   onChange={e => setName(e.target.value)}
                 />
         }
