@@ -138,7 +138,6 @@ h1 {
 .icons {
   display: flex;
   align-items: center;
-  font-size: 24px;
   cursor: pointer;
 }
 

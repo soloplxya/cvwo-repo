@@ -96,17 +96,18 @@ const Todo = ({todo, setTodos, todos, tags}) => {
             <div key={todo.id} style={{textOverflow: "ellipsis", whiteSpace: "nowrap", width: "200px", display: "inline-block", overflow:"hidden"}}>
               {todo.description}
             </div> 
+          </div> 
+          <div className='icons'>
             {
               todo.status
               ? <TagBadge text={todo.status}></TagBadge>
               : <div></div>
             }  
-          </div> 
-          <div className='icons'>
             <TiEdit
               type="button"
               className="edit-icon"
               onClick={toggleModal}
+              style={{fontSize: "24px"}}
               label="Edit"
             >
               Edit
@@ -153,6 +154,7 @@ const Todo = ({todo, setTodos, todos, tags}) => {
             <RiCloseCircleLine
                 onClick={() => deleteTodo(todo.id)}
                 className='delete-icon'
+                style={{fontSize: "24px"}}
             />
             </div>
         </div>

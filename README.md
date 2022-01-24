@@ -1,3 +1,5 @@
+# Shaine Goh Si Hui, A0220084U
+
 # README
 
 * Ruby version : Rails 7.0.0
